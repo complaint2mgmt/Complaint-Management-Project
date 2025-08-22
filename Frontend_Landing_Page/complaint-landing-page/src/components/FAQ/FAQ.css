@@ -1,0 +1,76 @@
+/* Container */
+.faq-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.faq-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* FAQ list wrapper */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card styling */
+.faq-card {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.faq-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Question section */
+.faq-question {
+  padding: 18px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: #2563eb;
+  transition: transform 0.3s ease;
+}
+
+/* Answer section */
+.faq-answer {
+  background-color: #f9fafb;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+}
+
+.faq-answer p {
+  margin: 15px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* When open, rotate icon */
+.faq-card.open .faq-icon {
+  transform: rotate(180deg);
+  color: #1d4ed8;
+}

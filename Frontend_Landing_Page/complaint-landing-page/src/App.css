@@ -1,0 +1,84 @@
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.header {
+  background-color: #0a3d62;
+  color: white;
+  padding: 1rem;
+}
+
+.header nav button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  color: #0a3d62;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.header nav button:hover {
+  background: #f1f1f1;
+}
+
+.faq-section, .register-section, .track-section {
+  margin: 2rem auto;
+  width: 60%;
+  text-align: left;
+}
+
+.faq-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.faq-section li {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.register-section form,
+.track-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-section input,
+.track-section input,
+.register-section textarea {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.register-section button,
+.track-section button {
+  padding: 0.5rem;
+  background: #0a3d62;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-section button:hover,
+.track-section button:hover {
+  background: #3c6382;
+}
+
+.complaint-status {
+  margin-top: 1rem;
+  background: #f1f2f6;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.footer {
+  background-color: #0a3d62;
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+}
