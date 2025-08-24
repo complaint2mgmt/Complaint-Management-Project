@@ -1,84 +1,345 @@
+/* Color Palette */
+:root {
+    --primary-blue: #0A3D62; /* Base Blue */
+    --vibrant-accent: #FF5733; /* Vibrant Orange-Red for highlights */
+    --light-accent: #ffcc00; /* Yellow accent */
+    --dark-bg: #1A1A2E; /* Dark Mode Background */
+    --light-bg: #F0F4F8; /* Light Mode Background */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --hover-scale: scale(1.01);
+}
+
 .App {
-  font-family: Arial, sans-serif;
-  text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    transition: background-color 0.4s ease;
+}
+
+/* --- Theme Styles for Color and Dynamic Background --- */
+
+.App.light {
+    background-color: var(--light-bg);
+    color: #2c3e50; /* Darker text for readability */
+}
+
+.App.dark {
+    background-color: var(--dark-bg);
+    color: #e6f7ff;
+}
+
+.header, .footer {
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .header {
-  background-color: #0a3d62;
-  color: white;
-  padding: 1rem;
+    /* Subtle Gradient for Dynamic Look */
+    background-image: linear-gradient(to right, var(--primary-blue), #1a5276);
+    color: white;
+    padding: 1.25rem 1rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; 
+    animation: fadeDown 0.6s ease-in-out;
 }
 
+.App.dark .header {
+    background-image: linear-gradient(to right, #111, #3c6382);
+}
+.App.dark .footer {
+    background-color: #222B3A;
+}
+
+.footer {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 0.75rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    animation: fadeUp 0.6s ease-in-out;
+    /* Optional: Add a subtle lift effect */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+/* --- Interactive Elements (Buttons & Links) --- */
+
+.header h1 {
+    flex-grow: 1; 
+    margin: 0;
+    text-align: center;
+    font-size: 1.8rem;
+    /* Subtle text shadow for pop */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+}
+
+/* Primary Nav Buttons (e.g., FAQs) */
 .header nav button {
-  margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-  background: white;
-  color: #0a3d62;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    margin: 0 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: white;
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .header nav button:hover {
-  background: #f1f1f1;
+    background: var(--light-accent);
+    color: #333;
+    transform: translateY(-3px) var(--hover-scale); /* Dynamic lift */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
+
+/* Highlight active button */
+.header nav button.active {
+    background-color: var(--vibrant-accent); /* Vibrant active color */
+    color: white;
+    font-weight: bold;
+    transform: var(--hover-scale);
+}
+
+/* --- Elegant Menu Styling --- */
+
+.left-controls {
+    position: relative;
+    z-index: 20;
+}
+
+.menu-toggle-btn {
+    padding: 0.6rem 1rem;
+    background: transparent; 
+    color: white; 
+    border: 1px solid white; 
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.menu-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2); /* More obvious hover */
+    border-color: var(--light-accent);
+}
+
+/* Dropdown Menu Container (Elegant Animation) */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px); 
+    left: 0;
+    background-color: #2c3e50; /* Deeper blue/grey for dropdown */
+    border: none;
+    padding: 0.5rem 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 0; 
+    min-width: 220px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+    border-radius: 6px;
+    overflow: hidden; /* Ensures smooth border-radius */
+    
+    /* Animation start state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px) perspective(1000px) rotateX(-10deg); /* 3D tilt effect */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+}
+
+/* Dropdown Menu Open State */
+.dropdown-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) perspective(1000px) rotateX(0deg);
+}
+
+/* Style the buttons inside the dropdown to look like menu links */
+.dropdown-menu button {
+    margin: 0;
+    padding: 0.75rem 1.5rem; 
+    background: transparent;
+    color: #e6f7ff;
+    border: none;
+    border-radius: 0; 
+    cursor: pointer;
+    font-weight: 400; 
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu button:hover {
+    background: var(--primary-blue); /* Primary color for hover */
+    color: var(--light-accent);
+}
+
+/* Active tab style inside the dropdown */
+.dropdown-menu button.active {
+    background-color: var(--vibrant-accent); 
+    color: white; 
+    font-weight: 600;
+}
+
+/* --- Content Sections --- */
 
 .faq-section, .register-section, .track-section {
-  margin: 2rem auto;
-  width: 60%;
-  text-align: left;
+    margin: 2.5rem auto;
+    padding: 1.5rem;
+    width: 60%;
+    max-width: 900px;
+    text-align: left;
+    background-color: white; /* Always white card on light mode */
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s ease;
+    animation: fadeUp 0.6s ease-in-out;
 }
 
-.faq-section ul {
-  list-style-type: none;
-  padding: 0;
+.App.dark .faq-section, 
+.App.dark .register-section, 
+.App.dark .track-section {
+    background-color: #222B3A; /* Dark card background */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    color: #e6f7ff;
 }
 
+/* FAQ List Items - Interactive Hover Effect */
 .faq-section li {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-.register-section form,
-.track-section form {
-  display: flex;
-  flex-direction: column;
+.faq-section li:hover {
+    background: rgba(255, 87, 51, 0.1); /* Light wash of the vibrant color */
+    transform: var(--hover-scale);
 }
+
+.App.dark .faq-section li {
+    border-bottom: 1px solid #333;
+}
+.App.dark .faq-section li:hover {
+    background: rgba(255, 87, 51, 0.2);
+}
+
+/* --- Forms & Inputs --- */
 
 .register-section input,
 .track-section input,
 .register-section textarea {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  font-size: 1rem;
+    margin: 0.6rem 0;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
+.register-section input:focus,
+.track-section input:focus,
+.register-section textarea:focus {
+    outline: none;
+    border: 1px solid var(--vibrant-accent); /* Vibrant focus border */
+    box-shadow: 0 0 8px rgba(255, 87, 51, 0.5); 
+}
+
+.App.dark .register-section input,
+.App.dark .track-section input,
+.App.dark .register-section textarea {
+    background-color: #303743;
+    border-color: #444;
+    color: white;
+}
+
+/* Form Buttons */
 .register-section button,
 .track-section button {
-  padding: 0.5rem;
-  background: #0a3d62;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    padding: 0.75rem;
+    background: var(--vibrant-accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .register-section button:hover,
 .track-section button:hover {
-  background: #3c6382;
+    background: #FF8D69; /* Lighter shade on hover */
+    transform: translateY(-2px) var(--hover-scale);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+/* Complaint status box */
 .complaint-status {
-  margin-top: 1rem;
-  background: #f1f2f6;
-  padding: 1rem;
-  border-radius: 4px;
+    margin-top: 1.5rem;
+    background: var(--light-accent);
+    color: #333;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border-left: 5px solid var(--vibrant-accent);
+    animation: fadeUp 0.5s ease-in-out;
+}
+.App.dark .complaint-status {
+    background: #333;
+    color: var(--light-accent);
 }
 
-.footer {
-  background-color: #0a3d62;
-  color: white;
-  padding: 1rem;
-  margin-top: 2rem;
+
+/* --- Animations & Responsiveness --- */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Content Fade-in animation (for interactivity/smooth transitions) */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 768px) {
+    .faq-section, .register-section, .track-section {
+        width: 90%;
+        margin: 1.5rem auto;
+    }
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    .left-controls {
+        align-self: flex-start;
+    }
+    .primary-nav, .theme-toggle {
+        align-self: flex-end;
+    }
+    .theme-toggle {
+      margin-top: 0;
+    }
 }

@@ -59,9 +59,7 @@ const RegisterComplaint = () => {
         <div className="success-message">
           <h3>Complaint Registered!</h3>
           <p>Our team will get back to you within 48 hours.</p>
-          <button onClick={() => setSubmitted(false)} className="new-complaint-btn">
-            Register Another Complaint
-          </button>
+         
         </div>
       )}
     </section>
