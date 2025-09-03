@@ -1,0 +1,18 @@
+.dashboard {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dashboard-container h2 {
+  margin-bottom: 20px;
+  color: #343a40;
+}
